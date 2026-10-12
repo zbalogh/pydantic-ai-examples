@@ -1,0 +1,67 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+target/
+wheels/
+*.egg-info
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# pytest
+.cache
+
+# mypy
+.mypy_cache/
+.dmypy.json
+.dmypy-working/
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Gradio directory
+.gradio/
+
+# Virtual environments
+.venv/
+venv/
+venv.bak/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Others
+*.log
+
+
+# Virtual environments
+.venv
+
+# env file
+.env
+.env.bak
+
+# project specific directories
+embedding-model/
+chromadb/

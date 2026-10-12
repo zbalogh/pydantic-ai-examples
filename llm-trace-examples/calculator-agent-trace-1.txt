@@ -1,0 +1,48 @@
+Számológép agent (összeadás, kivonás, szorzás, osztás)
+
+Kérdés: Mennyi 13 x 5 ?
+
+
+===== FELHASZNÁLÓI KÉRDÉS =====
+  Mennyi 13 x 5 ?
+
+===== KÉRÉS AZ LLM FELÉ =====
+  [system-prompt] Te egy számológép asszisztens vagy. Minden számítási lépéshez kötelezően használd a rendelkezésre álló eszközöket (add, subtract, multiply, divide), fejben ne számolj. Egyszerre csak egy eszközt hívj, és a következő lépésben az előző eszköz eredményét használd. Magyarul válaszolj, és röviden mutasd be a számítás lépéseit.
+  [user-prompt] Mennyi 13 x 5 ?
+
+===== ESZKÖZÖK AZ LLM-KÉRÉSBEN =====
+  add: Add two numbers.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "First number.", "type": "number"}, "b": {"description": "Second number.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  subtract: Subtract the second number from the first.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "Minuend.", "type": "number"}, "b": {"description": "Subtrahend.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  multiply: Multiply two numbers.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "First factor.", "type": "number"}, "b": {"description": "Second factor.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  divide: Divide the first number by the second.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "Dividend.", "type": "number"}, "b": {"description": "Divisor, must not be zero.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+
+===== LLM VÁLASZA =====
+  [tool-call] multiply({"a":13,"b":5})  id=call_z12tsGfsk9XPaSAHktS6zesg
+Eszköz hívás: szorzás 13.0 * 5.0
+
+===== KÉRÉS AZ LLM FELÉ =====
+  [tool-return] multiply -> 65.0  id=call_z12tsGfsk9XPaSAHktS6zesg
+
+===== ESZKÖZÖK AZ LLM-KÉRÉSBEN =====
+  add: Add two numbers.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "First number.", "type": "number"}, "b": {"description": "Second number.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  subtract: Subtract the second number from the first.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "Minuend.", "type": "number"}, "b": {"description": "Subtrahend.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  multiply: Multiply two numbers.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "First factor.", "type": "number"}, "b": {"description": "Second factor.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+  divide: Divide the first number by the second.
+    paraméterek: {"additionalProperties": false, "properties": {"a": {"description": "Dividend.", "type": "number"}, "b": {"description": "Divisor, must not be zero.", "type": "number"}}, "required": ["a", "b"], "type": "object"}
+
+===== LLM VÁLASZA =====
+  [text] A 13 x 5 szorzás eredménye 65.
+
+===== FUTÁS VÉGE =====
+  Token használat: RunUsage(cost=Decimal('0.00010485'), details={'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, input_tokens=567, output_tokens=33, requests=2, tool_calls=1)
+
+===== VÁLASZ =====
+
+A 13 x 5 szorzás eredménye 65.

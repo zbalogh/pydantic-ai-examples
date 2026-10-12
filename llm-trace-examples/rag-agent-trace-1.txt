@@ -1,0 +1,67 @@
+Indexelés folyamatban...
+
+Indexelés: 78 chunk, 0 frissítve, 0 eltávolítva.
+
+Indexelés befejezve.
+
+Kérdés: How do I take an online full backup in ACS 2.4?
+
+
+===== FELHASZNÁLÓI KÉRDÉS =====
+  How do I take an online full backup in ACS 2.4?
+
+===== KÉRÉS AZ LLM FELÉ =====
+  [system-prompt] Te egy belső vállalati asszisztens vagy. Mindig használd a 'search_knowledge_base' eszközt a kereséshez. Csak a megtalált dokumentumok alapján válaszolj, és nevezd meg a forrásokat. Ha nincs releváns találat, jelezd, hogy nem tudsz választ adni.
+  [user-prompt] How do I take an online full backup in ACS 2.4?
+
+===== ESZKÖZÖK AZ LLM-KÉRÉSBEN =====
+  search_knowledge_base: Keresés a nagyméretű kontextust támogató helyi tudásbázisban.
+    paraméterek: {"additionalProperties": false, "properties": {"query": {"description": "Keresési kifejezés.", "type": "string"}}, "required": ["query"],"type": "object"}
+
+===== LLM VÁLASZA =====
+  [tool-call] search_knowledge_base({"query":"online full backup ACS 2.4"})  id=call_VbxTcBeOcH7hgBPXUOsQALwl
+
+===== KÉRÉS AZ LLM FELÉ =====
+  [tool-return] search_knowledge_base -> Forrás: tudasbazis\backup-restore.md
+Tartalom:
+A full ACS backup contains a consistent export of PostgreSQL database `acsdb` and the active file `/etc/acs/acs.yaml`. Store the artifacts together under a change-specific location and record the ACS version, PostgreSQL version, creation time, and database host in a manifest. For example, a backup from an ACS 2.3 upgrade rehearsal might be named `acs-2.3-preupgrade-2026-09-28`. Backups must be
+
+---
+
+Forrás: tudasbazis\backup-restore.md
+Tartalom:
+ACS ...  id=call_VbxTcBeOcH7hgBPXUOsQALwl
+
+===== ESZKÖZÖK AZ LLM-KÉRÉSBEN =====
+  search_knowledge_base: Keresés a nagyméretű kontextust támogató helyi tudásbázisban.
+    paraméterek: {"additionalProperties": false, "properties": {"query": {"description": "Keresési kifejezés.", "type": "string"}}, "required": ["query"],"type": "object"}
+
+===== LLM VÁLASZA =====
+  [text] To take an online full backup in ACS 2.4, follow these steps:
+
+1. **Ensure PostgreSQL 15 WAL Archiving is Enabled**: ACS 2.4 supports online full backups only when WAL archiving is enabled.
+
+2. **Use an Approved Backup Process**: Your organization's approved backup process must capture a consistent database snapshot along with the required WALfiles.
+
+3. **Backup the ACS Configuration File**: Copy the active configuration file located at `/etc/acs/acs.yaml` and include it in the same backup mani ...
+
+===== FUTÁS VÉGE =====
+  Token használat: RunUsage(cost=Decimal('0.00027750'), details={'accepted_prediction_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0, 'rejected_prediction_tokens': 0}, input_tokens=858, output_tokens=248, requests=2, tool_calls=1)
+
+===== VÁLASZ =====
+
+To take an online full backup in ACS 2.4, follow these steps:
+
+1. **Ensure PostgreSQL 15 WAL Archiving is Enabled**: ACS 2.4 supports online full backups only when WAL archiving is enabled.
+
+2. **Use an Approved Backup Process**: Your organization's approved backup process must capture a consistent database snapshot along with the required WALfiles.
+
+3. **Backup the ACS Configuration File**: Copy the active configuration file located at `/etc/acs/acs.yaml` and include it in the same backup manifest.
+
+4. **Verify the Backup Job**: Ensure that the approved backup job reports a completed and recoverable snapshot.
+
+5. **Store Artifacts and Record Details**: Store the backup artifacts (database and configuration file) together under a specific location, and record relevant details such as ACS version, PostgreSQL version, creation time, and database host in a manifest.
+
+By following these steps, you can successfully perform an online full backup of ACS 2.4 while the `acs-server` is running.
+
+(Source: tudasbazis\backup-restore.md)
